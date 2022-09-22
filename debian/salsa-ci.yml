@@ -1,0 +1,17 @@
+# For more information on what jobs are run see:
+# https://salsa.debian.org/salsa-ci-team/pipeline
+#
+---
+include:
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+  - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
+variables:
+  SALSA_CI_DISABLE_CROSSBUILD_ARM64: 1
+
+# Incomplete support upstream, esp. in Python support
+blhc:
+  allow_failure: true
+# variation within the compiled src/examples
+reprotest:
+  allow_failure: true
+

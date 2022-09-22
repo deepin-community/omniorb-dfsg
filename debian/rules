@@ -1,0 +1,52 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/default.mk
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+export CPPFLAGS CFLAGS LDFLAGS
+
+%:
+	dh $@ --with python3
+
+override_dh_auto_configure:
+	PYTHON=/usr/bin/python3 dh_auto_configure -- $(confflags) \
+		--prefix=/usr \
+		--libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
+		--with-openssl \
+		--with-omniNames-logdir=/var/lib/omniorb
+
+# incomplete
+override_dh_auto_clean:
+	find . -name "*.pyc" -delete
+	find bin/ -maxdepth 1 -type f -delete
+	find src/examples/ -type f -executable -delete
+	find src/ -name "*.d" -type f -delete
+	$(RM) -r lib src/tool/omniidl/cxx/cccp/omnicpp stub/
+
+override_dh_auto_build:
+	dh_auto_build
+	$(MAKE) -C src/examples
+	find src/examples/ -name "*.o" -type f -delete
+	find src/examples/ -name "*.d" -type f -delete
+	cd doc/tex && hevea omniORB && hacha omniORB.html && cd -
+	mkdir doc/omniORB/
+	mv doc/tex/*.html doc/omniORB/
+	mv doc/tex/*.css doc/omniORB/
+	mv doc/tex/*.svg doc/omniORB/
+	$(RM) doc/tex/*.haux
+
+override_dh_auto_install:
+	dh_auto_install
+	dh_python3 -pomniidl
+	sed -i '1d' debian/tmp/usr/lib/omniidl/omniidl/main.py
+	# fixup omniidlrun - upstream uses the python3 version but mangles the shebang
+	sed -i 's%#!/usr/bin/env python%#! /usr/bin/python3%' ./debian/tmp/usr/bin/omniidlrun.py
+	mv ./debian/tmp/usr/bin/omniidlrun.py ./debian/tmp/usr/bin/omniidlrun
+
+override_dh_fixperms-arch:
+	dh_fixperms
+	find debian/omniorb-doc/usr/lib/omniorb/examples/ -executable -type f -name "*.mak" -exec chmod 644 "{}" \;

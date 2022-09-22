@@ -1,0 +1,24 @@
+From: Floris Bruynooghe <flub@devork.be>
+Date: Fri, 18 Jun 2021 13:32:35 +0200
+Subject: Use minus signs rather then hyphens in manpage
+
+Forwarded: no
+Last-Update: 2011-07-21
+
+Not doing so makes searching and copy-pasting in e.g. UTF-8 locales
+difficult.
+---
+ man/man1/catior.1 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/man/man1/catior.1
++++ b/man/man1/catior.1
+@@ -5,7 +5,7 @@
+ 
+ .SH SYNOPSIS
+ .B catior
+-[-x]
++[\-x]
+ <stringified IOR>
+ 
+ .SH DESCRIPTION

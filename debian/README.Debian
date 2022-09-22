@@ -1,0 +1,13 @@
+omniorb for Debian
+------------------
+
+The Python bindings in omniidl are installed in a non-standard
+path (which is not MultiArch-aware) and upstream choose to use
+sys.path mangling to import the modules into the scripts in
+/usr/bin/.
+
+Import errors will result from attempting to use the Python
+modules from the omniidl package other than via the scripts
+provided by upstream in /usr/bin/
+
+ -- Neil Williams <codehelp@debian.org>  Mon, 10 Jan 2022 10:46:27 +0000

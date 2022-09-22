@@ -1,0 +1,174 @@
+Source: omniorb-dfsg
+Section: devel
+Priority: optional
+Maintainer: Freexian Packaging Team <team+freexian@tracker.debian.org>
+Uploaders:
+ Sebastien Delafond <seb@debian.org>,
+ Neil Williams <codehelp@debian.org>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ libssl-dev,
+ pkg-config,
+ python3-all-dev,
+ hevea,
+Standards-Version: 4.6.0
+Homepage: http://omniorb.sourceforge.net
+Vcs-Browser: https://salsa.debian.org/debian/omniorb-dfsg
+Vcs-Git: https://salsa.debian.org/debian/omniorb-dfsg.git
+
+Package: omniorb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: IOR and naming service utilities for omniORB
+ omniORB is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+
+Package: omniorb-idl
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: omniORB CORBA services idl files
+ omniORB is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the idl files.
+
+Package: omniorb-nameserver
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, lsb-base
+Description: omniORB naming service
+ omniORB is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the CORBA nameserver.
+
+Package: omniorb-doc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: libomniorb4-dev (= ${binary:Version}), libomnithread4-dev (= ${binary:Version})
+Description: omniORB documentation and examples
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the documentation and compiled examples.
+
+Package: libcos4-2
+Architecture: any
+Multi-Arch: same
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libcos4-1
+Replaces: libcos4-1
+Description: omniORB CORBA services stubs
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes libcos4 and libcosdynamic4.
+
+Package: libcos4-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libcos4-2 (= ${binary:Version}), libomniorb4-dev (= ${binary:Version}), pkg-config, ${misc:Depends}
+Description: omniORB CORBA services stubs development files
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes developer files for libcos4 and libcosdynamic4.
+
+Package: libomniorb4-2
+Architecture: any
+Multi-Arch: same
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libomniorb4-1
+Replaces: libomniorb4-1
+Description: omniORB core libraries
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes libomniorb4, libomnicodesets4, libomnidynamic4
+ and libomnissltp4.
+
+Package: libomniorb4-dev
+Architecture: any
+Section: libdevel
+Depends: libomniorb4-2 (= ${binary:Version}), libomnithread4-dev (= ${binary:Version}), libssl-dev, pkg-config, ${misc:Depends}
+Breaks: libomniorb3-dev
+Replaces: libomniorb3-dev
+Multi-Arch: same
+Description: omniORB core libraries development files
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes developer files for libomniorb4, libomnicodesets4,
+ libomnidynamic4 and libomnissltp4.
+
+Package: libomnithread4
+Architecture: any
+Multi-Arch: same
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: C++ threading library
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes libomnithread4.
+
+Package: libomnithread4-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libomnithread4 (= ${binary:Version}), pkg-config, ${misc:Depends}
+Breaks: libomnithread3-dev
+Replaces: libomnithread3-dev
+Description: C++ threading library development files
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes developer files libomnithread4.
+
+Package: omniidl
+Architecture: any
+Depends: ${shlibs:Depends}, ${python3:Depends}, ${misc:Depends}
+Suggests: omniidl-python
+Breaks: omniidl-python (<< 3.5-1)
+Description: omniORB IDL to C++ and Python3 compiler
+ omniORB4 is a freely available Common Object Request Broker
+ Architecture (CORBA) 2.6 compliant object request broker (ORB)
+ implementation. It is based on the IIOP communications
+ protocol and should be interoperable with any other
+ CORBA 2.6 compliant ORB.
+ .
+ This includes the idl compiler.
