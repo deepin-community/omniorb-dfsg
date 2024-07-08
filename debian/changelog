@@ -1,8 +1,12 @@
-omniorb-dfsg (4.2.5+ds1-1) UNRELEASED; urgency=medium
+omniorb-dfsg (4.2.5+ds1-1deepin1) unstable; urgency=medium
 
+  [ Freexian Packaging Team ]
   * update
 
- -- Freexian Packaging Team <team+freexian@tracker.debian.org>  Tue, 07 Jun 2022 14:55:39 +0800
+  [ Tianyu Chen ]
+  * No source change upload against python 3.12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Mon, 08 Jul 2024 09:53:02 +0200
 
 omniorb-dfsg (4.2.5+ds1-1) unstable; urgency=medium
 
